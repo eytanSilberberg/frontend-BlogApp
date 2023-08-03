@@ -12,9 +12,9 @@ import {
     Image,
 } from '@chakra-ui/react'
 import { ReactNode } from 'react'
-import Logo from '/logo.svg'
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
+
     return (
         <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
             {children}
@@ -23,6 +23,11 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 }
 
 export default function Footer() {
+    const linksGroup1 = ['Tutorials', 'Pricing', 'Releases']
+    const linksGroup2 = ['About Us', 'Press', 'Careers', 'Contact Us', 'Partners']
+    const linksGroup3 = ['Cookies Policy', 'Privacy Policy', 'Terms of Service', 'Law Enforcement', 'Status']
+    const linksGroup4 = ['Facebook', 'Twitter', 'Dribbble', 'Instagram', 'LinkedIn']
+
     return (
         <Box
             bg={useColorModeValue('gray.50', 'gray.900')}
@@ -46,69 +51,29 @@ export default function Footer() {
                                 New
                             </Tag>
                         </Stack>
-                        <Box as="a" href={'#'}>
-                            Tutorials
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Pricing
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Releases
-                        </Box>
+                        {linksGroup1.map(link => <Box key={link} as="a" href={'#'}>
+                            {link}
+                        </Box>)}
+
                     </Stack>
                     <Stack align={'flex-start'}>
                         <ListHeader>Company</ListHeader>
-                        <Box as="a" href={'#'}>
-                            About Us
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Press
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Careers
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Contact Us
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Partners
-                        </Box>
+                        {linksGroup2.map(link => <Box key={link} as="a" href={'#'}>
+                            {link}
+                        </Box>)}
                     </Stack>
                     <Stack align={'flex-start'}>
                         <ListHeader>Legal</ListHeader>
-                        <Box as="a" href={'#'}>
-                            Cookies Policy
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Privacy Policy
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Terms of Service
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Law Enforcement
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Status
-                        </Box>
+                        {linksGroup3.map(link => <Box key={link} as="a" href={'#'}>
+                            {link}
+                        </Box>)}
                     </Stack>
                     <Stack align={'flex-start'}>
                         <ListHeader>Follow Us</ListHeader>
-                        <Box as="a" href={'#'}>
-                            Facebook
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Twitter
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Dribbble
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            Instagram
-                        </Box>
-                        <Box as="a" href={'#'}>
-                            LinkedIn
-                        </Box>
+                        {linksGroup4.map(link => <Box key={link} as="a" href={'#'}>
+                            {link}
+                        </Box>)}
+
                     </Stack>
                 </SimpleGrid>
             </Container>
@@ -129,8 +94,7 @@ export default function Footer() {
                         flexGrow: 1,
                         ml: 8,
                     }}>
-                    {/* <Logo /> */}
-                    <Image src={'/logo2.svg'} width={50} height={50} />
+                    ``                    <Image src={'/logo2.svg'} width={50} height={50} />
                 </Flex>
                 <Text pt={6} fontSize={'sm'} textAlign={'center'}>
                     © 2023 DailyTechByes. All rights reserved
