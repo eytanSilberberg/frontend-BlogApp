@@ -17,6 +17,7 @@ import {
 import Link from 'next/link'
 import React, { useEffect } from 'react'
 
+// replace new lines with br
 function replaceNewLinesWithBr(text: string) {
     return text.split("\n").map((line: string, index: number) => (
         <React.Fragment key={index}>

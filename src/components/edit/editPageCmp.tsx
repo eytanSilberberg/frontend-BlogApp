@@ -3,7 +3,7 @@
 import { GetPostRes, Post } from '@/app/types'
 import { erasePostFromDb, savePostToDb, updatePostInDb } from '@/redux/actions/post'
 import { useAppDispatch } from '@/redux/hooks'
-import { chakraToastError, chakraToastSuccess, deletePost, savePost, updatePost } from '@/services/util.service'
+import { chakraToastError, chakraToastSuccess } from '@/services/util.service'
 import { useRouter } from 'next/navigation'
 import {
     Button,
@@ -17,22 +17,35 @@ import {
     useColorModeValue,
     Image,
     useToast,
-    useTimeout
 } from '@chakra-ui/react'
 import { useState } from 'react'
 
 export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null }) {
     const post = postSSR?.data
+
+    // utils
     const router = useRouter()
     const dispatch = useAppDispatch()
+    const [isLoading, setIsLoading] = useState(false)
+    const [buttonClicked, setButtonClicked] = useState<null | string>(null)
+
+    // component states for form
     const [title, setTitle] = useState(post ? post.title : '')
     const [description, setDescription] = useState(post ? post.description : '')
     const [image, setImage] = useState(post ? post.image : '')
     const [id, setId] = useState<string | null>(post ? post.id! : null)
-    const [isLoading, setIsLoading] = useState(false)
     const toast = useToast()
-    const [buttonClicked, setButtonClicked] = useState<null | string>(null)
 
+    // Regex for image url
+    const imageRegex = /^http[^ \!@\$\^&\(\)\+\=]+(\.png|\.jpeg|\.gif|\.jpg)$/
+
+
+
+    const checkRegex = (img: string) => {
+        const regex = new RegExp(imageRegex)
+        if (!regex.test(img)) return false
+        else return true
+    }
 
     // TODO- add handle save function
     const handleSave = async () => {
@@ -47,17 +60,21 @@ export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null })
         setIsLoading(true)
         setButtonClicked('save')
         try {
-            if (id) {
-                // in case of existing id - update
-                newPost.id = id
-                await dispatch(updatePostInDb(newPost))
-                // await updatePost(id, newPost)
+            if (checkRegex(image)) {
+                if (id) {
+                    // in case of existing id - update
+                    newPost.id = id
+                    await dispatch(updatePostInDb(newPost))
+                    // await updatePost(id, newPost)
+                }
+                else {
+                    // in case of existing id - create
+                    await dispatch(savePostToDb(newPost))
+                }
+                toast(chakraToastSuccess('Post saved successfully'))
+            } else {
+                toast(chakraToastError('Please enter a valid image url'))
             }
-            else {
-                // in case of existing id - create
-                await dispatch(savePostToDb(newPost))
-            }
-            toast(chakraToastSuccess('Post saved successfully'))
         } catch (e) {
             toast(chakraToastError('Something went wrong'))
         }
@@ -65,8 +82,6 @@ export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null })
         setButtonClicked(null)
     }
 
-    // TODO: add confirmation modal
-    // // TODO: add handle delete function
     const handleDelete = async () => {
         setButtonClicked('delete')
         setIsLoading(true)
@@ -84,6 +99,7 @@ export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null })
         setIsLoading(false)
         setButtonClicked(null)
     }
+
 
     return (
         <Flex

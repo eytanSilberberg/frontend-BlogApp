@@ -1,6 +1,6 @@
 // app/layout.tsx
 import Header from "@/components/header";
-import { Providers } from "@/components/providers";
+import { ChakraUIProvider } from "@/components/chakraUIProvider";
 import Footer from "@/components/footer";
 import { ReduxProvider } from "@/redux/provider";
 
@@ -14,11 +14,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ReduxProvider>
-          <Providers>
+          <ChakraUIProvider>
             <Header />
             {children}
             <Footer />
-          </Providers>
+          </ChakraUIProvider>
         </ReduxProvider>
       </body>
     </html>

@@ -1,20 +1,5 @@
 'use client'
 import Link from 'next/link'
-const buttons = [
-    {
-        name: 'Home',
-        path: '/'
-    },
-    {
-        name: 'Posts',
-        path: '/posts'
-    },
-    {
-        name: 'Edit',
-        path: '/edit'
-    }
-]
-
 import {
     Box,
     Flex,
@@ -42,7 +27,21 @@ interface Props {
     children: React.ReactNode
 }
 
-const Links = ['Dashboard', 'Projects', 'Team']
+// button data
+const buttons = [
+    {
+        name: 'Home',
+        path: '/'
+    },
+    {
+        name: 'Posts',
+        path: '/posts'
+    },
+    {
+        name: 'Edit',
+        path: '/edit'
+    }
+]
 
 const NavLink = (props: Props) => {
     const { children } = props
@@ -69,6 +68,8 @@ export default function Simple() {
     useEffect(() => {
         console.log(currentPath)
     }, [currentPath])
+
+    // menu controllers
     const { isOpen, onOpen, onClose } = useDisclosure()
 
     return (

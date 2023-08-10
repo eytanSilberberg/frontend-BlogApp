@@ -1,18 +1,15 @@
 'use client'
-
-import Image from 'next/image'
 import {
     Box,
     Center,
     Heading,
     Text,
     Stack,
-    Avatar,
+    Image,
     useColorModeValue,
 } from '@chakra-ui/react'
 import { Post } from '@/app/types'
 import Link from 'next/link'
-
 export default function PostCard({ post }: { post: Post }) {
     return (
         <Link href={`/posts/${post.id}`}>
@@ -31,8 +28,11 @@ export default function PostCard({ post }: { post: Post }) {
                             src={
                                 post.image
                             }
-                            fill
                             alt="Example"
+                            objectFit={'cover'}
+                            mb={5}
+                            w={'full'}
+                            h={'full'}
                         />
                     </Box>
                     <Stack>
@@ -41,7 +41,6 @@ export default function PostCard({ post }: { post: Post }) {
                             textTransform={'uppercase'}
                             fontWeight={800}
                             fontSize={'xs'}
-                        // letterSpacing={1.1}
                         >
                             Blog
                         </Text>

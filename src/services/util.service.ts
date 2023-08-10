@@ -3,7 +3,7 @@ import { HomepageData, Post, ToastInput } from "@/app/types"
 // import { store } from "@/redux/store"
 import axios from "axios"
 export const getPosts = async () => {
-  const res=await fetch('https://blogpy-1-p2885582.deta.app/api/v1/posts/',{
+  const res=await fetch('http://127.0.0.1:8000/api/v1/posts/',{
     method:'GET',
     })
     const data=await res.json()
@@ -11,13 +11,13 @@ export const getPosts = async () => {
   }
   
   export const getHpData = async () => {
-  const res=await axios.get('https://blogpy-1-p2885582.deta.app/api/v1/hpd')
+  const res=await axios.get('http://127.0.0.1:8000/api/v1/hpd')
   const data=await res.data
   return data
   }
 
   export const getPost= async (id:string)=>{
-    const res=await fetch(`https://blogpy-1-p2885582.deta.app/api/v1/posts/${id}`,{
+    const res=await fetch(`http://127.0.0.1:8000/api/v1/posts/${id}`,{
       method:'GET',
     })
     const data=await res.json()
@@ -26,18 +26,18 @@ export const getPosts = async () => {
 
   export const updatePost= async (id:string,post:Post)=>{
     console.log('asdfasdfasdf');
-    const res=await axios.put(`https://blogpy-1-p2885582.deta.app/api/v1/posts/${id}`,post)
+    const res=await axios.put(`http://127.0.0.1:8000/api/v1/posts/${id}`,post)
     const data=res.data.data
     
     return data
   }
   export const savePost= async (post:Post)=>{
-    const res=await axios.post(`https://blogpy-1-p2885582.deta.app/api/v1/posts/`,post)
+    const res=await axios.post(`http://127.0.0.1:8000/api/v1/posts/`,post)
     
     return res.data.data
   }
   export const deletePost= async (id:string)=>{
-    const res=await axios.delete(`https://blogpy-1-p2885582.deta.app/api/v1/posts/${id}`)
+    const res=await axios.delete(`http://127.0.0.1:8000/api/v1/posts/${id}`)
     const data=await res.data
     return data
   }

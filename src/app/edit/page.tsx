@@ -10,7 +10,7 @@ export default async function EditPage({ searchParams }: { searchParams: { id: s
     const { id } = searchParams
     let post = null
     if (id) {
-        const res = await fetch(`https://blogpy-1-p2885582.deta.app/api/v1/posts/${id}`, {
+        const res = await fetch(`http://127.0.0.1:8000/api/v1/posts/${id}`, {
             method: 'GET',
             cache: 'no-store',
         })

@@ -23,6 +23,8 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 }
 
 export default function Footer() {
+
+    // links
     const linksGroup1 = ['Tutorials', 'Pricing', 'Releases']
     const linksGroup2 = ['About Us', 'Press', 'Careers', 'Contact Us', 'Partners']
     const linksGroup3 = ['Cookies Policy', 'Privacy Policy', 'Terms of Service', 'Law Enforcement', 'Status']

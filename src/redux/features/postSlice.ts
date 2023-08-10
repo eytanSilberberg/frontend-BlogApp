@@ -23,6 +23,7 @@ const initialState = {
 export const postSlice = createSlice({
     name: "post",
     initialState,
+    // non async reducers
     reducers: {
         setPostsReducer: (state, action: PayloadAction<Post[]>) => {
             state.value.posts = action.payload
@@ -31,6 +32,7 @@ export const postSlice = createSlice({
             state.value.timeStamp = action.payload
         }
     },
+    // async reducers
     extraReducers:(builder)=>{
         builder
         .addCase(getPostsFromDb.fulfilled, (state, action: PayloadAction<Post[]>) => {
@@ -58,6 +60,7 @@ export const postSlice = createSlice({
 
 export const { setPostsReducer,setTimeStampReducer } = postSlice.actions
 
+// Selects for faster getting data from store
 export const selectPost = (state: RootState) => state.post.value.posts
 export const selectTimeStamp = (state: RootState) => state.post.value.timeStamp
 export default postSlice.reducer
