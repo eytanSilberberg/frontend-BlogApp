@@ -1,7 +1,7 @@
 'use client'
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { Post } from "@/app/types";
+import { Post } from "@/types";
 import { deletePost, getPost, getPosts, savePost, updatePost } from "@/services/util.service";
 
 

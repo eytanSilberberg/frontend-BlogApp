@@ -1,21 +1,7 @@
 import HomeCmp from '@/components/home/home'
+import { getPostsData, getHeadingData } from '@/services/server.util.service'
 
-const getPostsData = async () => {
 
-  const postsData = await fetch('https://blogpy-1-p2885582.deta.app/api/v1/posts', {
-    method: 'GET',
-    cache: 'no-store',
-  })
-  return await postsData.json()
-}
-
-const getHeadingData = async () => {
-  const headingData = await fetch('https://blogpy-1-p2885582.deta.app/api/v1/hpd', {
-    method: 'GET',
-    cache: 'no-store',
-  })
-  return await headingData.json()
-}
 
 export default async function HomePage() {
   const postsRes = await getPostsData()
