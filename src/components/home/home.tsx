@@ -1,11 +1,6 @@
 'use client'
-import {
-    HomePageDataRes,
-    getPostsRes
-} from '@/app/types'
-import
-React,
-{ useEffect } from 'react'
+import { HomePageDataRes, getPostsRes } from '@/types'
+import React, { useEffect } from 'react'
 import PostCard from '../shared/postCard'
 import {
     Flex,
@@ -13,11 +8,7 @@ import {
 } from '@chakra-ui/react'
 import Hero from './hero'
 import { useAppSelector } from '@/redux/hooks'
-import {
-    selectPost,
-    setPostsReducer,
-    setTimeStampReducer
-} from '@/redux/features/postSlice'
+import { selectPost, setPostsReducer, setTimeStampReducer } from '@/redux/features/postSlice'
 import { useDispatch } from 'react-redux'
 
 export default function HomeCmp({ postsSSR, homePageDataSSR }: { postsSSR: getPostsRes, homePageDataSSR: HomePageDataRes }) {
@@ -26,21 +17,22 @@ export default function HomeCmp({ postsSSR, homePageDataSSR }: { postsSSR: getPo
 
     const { data: homePageData } = homePageDataSSR
     useEffect(() => {
-        // if no posts in redux, dispatch posts from ssr
         dispatch(setPostsReducer(postsSSR.data))
         dispatch(setTimeStampReducer(postsSSR.timeStamp))
     }, [])
 
-    // Show a small amount of posts in home page
+    // Display relevant posts, either from Redux store or from server-side props
     const relevantPosts = postsFromRedux.length > 0 ? postsFromRedux.slice(0, 2) : postsSSR.data.slice(0, 2)
     return (
-        <Flex className='home-wrapper' flexDir={'column'} alignItems={'center'}>
-            <Hero homePageData={homePageData} />
-            <Heading fontSize={['xl', '3xl']} my={10} >{'WHAT\'S NEW'}</Heading>
-            <Flex justifyContent={'center'} gap={5} flexWrap={'wrap'} mb={20}>
-                {postsFromRedux.length > 0 && relevantPosts.map((post) => <PostCard key={post.id} post={post} />)}
-                {postsFromRedux.length === 0 && postsSSR && relevantPosts.map((post) => <PostCard key={post.id} post={post} />)}
+        <>
+            <Flex className='home-wrapper' flexDir={'column'} alignItems={'center'}>
+                <Hero homePageData={homePageData} />
+                <Heading fontSize={['xl', '3xl']} my={10} >{'WHAT\'S NEW'}</Heading>
+                <Flex justifyContent={'center'} gap={5} flexWrap={'wrap'} mb={20}>
+                    {postsFromRedux.length > 0 && relevantPosts.map((post) => <PostCard key={post.id} post={post} />)}
+                    {postsFromRedux.length === 0 && postsSSR && relevantPosts.map((post) => <PostCard key={post.id} post={post} />)}
+                </Flex>
             </Flex>
-        </Flex>
+        </>
     )
 }

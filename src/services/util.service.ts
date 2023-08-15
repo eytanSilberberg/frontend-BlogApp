@@ -1,6 +1,5 @@
 'use client'
-import { HomepageData, Post, ToastInput } from "@/app/types"
-// import { store } from "@/redux/store"
+import {  Post, ToastInput } from "@/types"
 import axios from "axios"
 export const getPosts = async () => {
   const res=await fetch('http://127.0.0.1:8000/api/v1/posts/',{

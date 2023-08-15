@@ -1,5 +1,5 @@
 'use client'
-import { PostData } from '@/app/types'
+import { PostData } from '@/types'
 import {
     Box,
     Container,

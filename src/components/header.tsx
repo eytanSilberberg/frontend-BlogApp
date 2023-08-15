@@ -3,9 +3,7 @@ import Link from 'next/link'
 import {
     Box,
     Flex,
-    Avatar,
     HStack,
-    Text,
     IconButton,
     Button,
     Menu,
@@ -75,7 +73,7 @@ export default function Simple() {
     return (
         <>
             <Box px={4} pt={2}>
-                <Flex h={16} alignItems={'center'} justifyContent={'space-between'} mb={1} className='header'>
+                <Flex h={16} alignItems={'center'} justifyContent={'space-between'} mb={1} className='header-wrapper'>
                     <IconButton
                         size={'md'}
                         icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
@@ -83,11 +81,19 @@ export default function Simple() {
                         display={{ md: 'none' }}
                         onClick={isOpen ? onClose : onOpen}
                     />
-                    <HStack display={'flex'} spacing={8} alignItems={'center'} >
-                        <Box w={59} flexGrow={1}>
+                    <HStack
+                        display={'flex'}
+                        spacing={8}
+                        alignItems={'center'}
+                        className='header'
+                    >
+                        <Box
+                            className='image-wrapper'
+                            w={59}
+                            flexGrow={1}>
                             <Image width={'100%'} height={'100%'} src={'/logo2.svg'} />
                         </Box>
-                        <HStack flexGrow={2} as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} justifyContent={'center'}>
+                        <HStack className='nav-button' flexGrow={2} as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} justifyContent={'center'}>
                             {buttons.map((button, index) => {
                                 return (
                                     <Link
@@ -110,7 +116,7 @@ export default function Simple() {
                         </HStack>
                         <Box flexGrow={1}></Box>
                     </HStack>
-                    <Flex alignItems={'center'}>
+                    <Flex alignItems={'center'} className='menu'>
                         <Menu>
                             <MenuButton
                                 as={Button}

@@ -1,6 +1,6 @@
 'use client'
 
-import { GetPostRes, Post } from '@/app/types'
+import { GetPostRes, Post } from '@/types'
 import { erasePostFromDb, savePostToDb, updatePostInDb } from '@/redux/actions/post'
 import { useAppDispatch } from '@/redux/hooks'
 import { chakraToastError, chakraToastSuccess } from '@/services/util.service'
@@ -33,7 +33,7 @@ export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null })
     const [title, setTitle] = useState(post ? post.title : '')
     const [description, setDescription] = useState(post ? post.description : '')
     const [image, setImage] = useState(post ? post.image : '')
-    const [id, setId] = useState<string | null>(post ? post.id! : null)
+    const [id] = useState<string | null>(post ? post.id! : null)
     const toast = useToast()
 
     // Regex for image url
@@ -103,11 +103,12 @@ export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null })
 
     return (
         <Flex
-            // minH={'100vh'}
+            className='edit-page-wrapper'
             align={'center'}
             justify={'center'}
             bg={useColorModeValue('gray.50', 'gray.800')}>
             <Stack
+                className='edit-page-stack'
                 spacing={4}
                 w={'full'}
                 maxW={'2xl'}
@@ -120,8 +121,11 @@ export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null })
                     Add/Edit Article
                 </Heading>
                 <FormControl id="title" >
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel
+                        className='edit-page-title-label'
+                    >Title</FormLabel>
                     <Input
+                        className='edit-page-title-input'
                         placeholder="Your title"
                         _placeholder={{ color: 'gray.500' }}
                         type="text"
@@ -133,21 +137,33 @@ export default function EditPageCmp({ postSSR }: { postSSR: GetPostRes | null })
                     />
                 </FormControl>
                 <FormControl id="password" >
-                    <FormLabel>Your article</FormLabel>
-                    <Textarea value={description} onChange={(e) => {
-                        setDescription(e.target.value)
-                    }
-                    } />
+                    <FormLabel
+                        className='edit-page-description-label'
+                    >Your article</FormLabel>
+                    <Textarea
+                        className='edit-page-description-input'
+                        value={description}
+                        onChange={(e) => {
+                            setDescription(e.target.value)
+                        }
+                        } />
                 </FormControl>
                 {post?.image && <Image src={image} alt="Article image" />}
                 <FormControl id="image" >
-                    <FormLabel>Image Url</FormLabel>
-                    <Input value={image} onChange={(e) => {
-                        setImage(e.target.value)
-                    }
-                    } />
+                    <FormLabel
+                        className='edit-page-image-label'
+                    >Image Url</FormLabel>
+                    <Input
+                        className='edit-page-image-input'
+                        value={image}
+                        onChange={(e) => {
+                            setImage(e.target.value)
+                        }
+                        } />
                 </FormControl>
-                <Flex gap={5} flexDir={['column', 'column', 'row']}>
+                <Flex
+                    className='edit-page-buttons'
+                    gap={5} flexDir={['column', 'column', 'row']}>
                     {id && <Button
                         bg={'red.400'}
                         flexGrow={1}

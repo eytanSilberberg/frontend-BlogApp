@@ -23,8 +23,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 }
 
 export default function Footer() {
-
-    // links
+    // Dummy links
     const linksGroup1 = ['Tutorials', 'Pricing', 'Releases']
     const linksGroup2 = ['About Us', 'Press', 'Careers', 'Contact Us', 'Partners']
     const linksGroup3 = ['Cookies Policy', 'Privacy Policy', 'Terms of Service', 'Law Enforcement', 'Status']
@@ -32,9 +31,15 @@ export default function Footer() {
 
     return (
         <Box
+            className='footer-wrapper'
             bg={useColorModeValue('gray.50', 'gray.900')}
             color={useColorModeValue('gray.700', 'gray.200')}>
-            <Container as={Stack} maxW={'6xl'} py={10}>
+            <Container
+                as={Stack}
+                maxW={'6xl'}
+                py={10}
+                className='links-wrapper'
+            >
                 <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
                     <Stack align={'flex-start'}>
                         <ListHeader>Product</ListHeader>
@@ -79,7 +84,8 @@ export default function Footer() {
                     </Stack>
                 </SimpleGrid>
             </Container>
-            <Box py={10}>
+            <Box py={10}
+                className='image-wrapper'>
                 <Flex
                     align={'center'}
                     _before={{
@@ -96,7 +102,7 @@ export default function Footer() {
                         flexGrow: 1,
                         ml: 8,
                     }}>
-                    ``                    <Image src={'/logo2.svg'} width={50} height={50} />
+                    <Image src={'/logo2.svg'} width={50} height={50} />
                 </Flex>
                 <Text pt={6} fontSize={'sm'} textAlign={'center'}>
                     © 2023 DailyTechByes. All rights reserved

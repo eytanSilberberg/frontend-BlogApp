@@ -1,6 +1,6 @@
 import { createSlice,PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import { Post } from "@/app/types";
+import { Post } from "@/types";
 import { erasePostFromDb, getPostsFromDb, savePostToDb, updatePostInDb } from "../actions/post";
 
 interface InitialState {

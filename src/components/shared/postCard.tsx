@@ -8,11 +8,14 @@ import {
     Image,
     useColorModeValue,
 } from '@chakra-ui/react'
-import { Post } from '@/app/types'
+import { Post } from '@/types'
 import Link from 'next/link'
 export default function PostCard({ post }: { post: Post }) {
     return (
-        <Link href={`/posts/${post.id}`}>
+        <Link
+            href={`/posts/${post.id}`}
+            className='post-card'
+        >
             <Center >
                 <Box
                     maxW={'350px'}
@@ -23,7 +26,14 @@ export default function PostCard({ post }: { post: Post }) {
                     rounded={'md'}
                     p={4}
                     overflow={'hidden'}>
-                    <Box h={'210px'} bg={'gray.100'} mt={-6} mx={-6} mb={6} pos={'relative'}>
+                    <Box
+                        className='image-wrapper'
+                        h={'210px'}
+                        bg={'gray.100'}
+                        mt={-6}
+                        mx={-6}
+                        mb={6}
+                        pos={'relative'}>
                         <Image
                             src={
                                 post.image
