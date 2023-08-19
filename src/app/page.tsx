@@ -12,6 +12,7 @@ export default async function HomePage() {
   const [posts, homePageData] = await Promise.all([postsRes, headingRes])
   return (
     <HomeCmp homePageDataSSR={homePageData} postsSSR={posts} />
+    // <h1>hello</h1>
   )
 }
 

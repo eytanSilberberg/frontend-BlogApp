@@ -11,23 +11,14 @@ import {
     useColorModeValue,
     Image,
 } from '@chakra-ui/react'
-import { ReactNode } from 'react'
+import { ListHeader } from './listHeader'
+import { footerDummyLinks } from '@/services/util.service'
 
-const ListHeader = ({ children }: { children: ReactNode }) => {
 
-    return (
-        <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
-            {children}
-        </Text>
-    )
-}
 
 export default function Footer() {
     // Dummy links
-    const linksGroup1 = ['Tutorials', 'Pricing', 'Releases']
-    const linksGroup2 = ['About Us', 'Press', 'Careers', 'Contact Us', 'Partners']
-    const linksGroup3 = ['Cookies Policy', 'Privacy Policy', 'Terms of Service', 'Law Enforcement', 'Status']
-    const linksGroup4 = ['Facebook', 'Twitter', 'Dribbble', 'Instagram', 'LinkedIn']
+    const { group1, group2, group3, group4 } = footerDummyLinks
 
     return (
         <Box
@@ -58,26 +49,26 @@ export default function Footer() {
                                 New
                             </Tag>
                         </Stack>
-                        {linksGroup1.map(link => <Box key={link} as="a" href={'#'}>
+                        {group1.map(link => <Box key={link} as="a" href={'#'}>
                             {link}
                         </Box>)}
 
                     </Stack>
                     <Stack align={'flex-start'}>
                         <ListHeader>Company</ListHeader>
-                        {linksGroup2.map(link => <Box key={link} as="a" href={'#'}>
+                        {group2.map(link => <Box key={link} as="a" href={'#'}>
                             {link}
                         </Box>)}
                     </Stack>
                     <Stack align={'flex-start'}>
                         <ListHeader>Legal</ListHeader>
-                        {linksGroup3.map(link => <Box key={link} as="a" href={'#'}>
+                        {group3.map(link => <Box key={link} as="a" href={'#'}>
                             {link}
                         </Box>)}
                     </Stack>
                     <Stack align={'flex-start'}>
                         <ListHeader>Follow Us</ListHeader>
-                        {linksGroup4.map(link => <Box key={link} as="a" href={'#'}>
+                        {group4.map(link => <Box key={link} as="a" href={'#'}>
                             {link}
                         </Box>)}
 

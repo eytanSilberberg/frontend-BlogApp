@@ -34,12 +34,14 @@ export default function PostDetailsCmp({ postSSR }: { postSSR: PostData }) {
     const NewTextComp = replaceNewLinesWithBr(description)
 
     return (
-        <Container maxW={'6xl'}>
+        <Container className='post-details-wrapper' maxW={'6xl'}>
             <SimpleGrid
+                className='post-details-layout'
                 columns={1}
                 spacing={{ base: 8, md: 10 }}
                 py={{ base: 18, md: 24 }}>
-                <Flex>
+                <Flex
+                    className='image-wrapper'>
                     <Image
                         rounded={'md'}
                         alt={'product image'}
@@ -49,11 +51,12 @@ export default function PostDetailsCmp({ postSSR }: { postSSR: PostData }) {
                         fit={'cover'}
                         align={'center'}
                         w={'100%'}
-                        h={{ base: '100%', sm: '400px', lg: '500px' }}
-                    />
+                        h={{ base: '100%', sm: '400px', lg: '500px' }} />
                 </Flex>
                 <Stack spacing={{ base: 6, md: 10 }}>
-                    <Box as={'header'}>
+                    <Box
+                        className='title-wrapper'
+                        as={'header'}>
                         <Heading
                             lineHeight={1.1}
                             fontWeight={600}
@@ -62,19 +65,22 @@ export default function PostDetailsCmp({ postSSR }: { postSSR: PostData }) {
                         </Heading>
 
                     </Box>
-
                     <Stack
                         spacing={{ base: 4, sm: 6 }}
                         direction={'column'}
                         divider={
                             <StackDivider borderColor={useColorModeValue('gray.200', 'gray.600')} />
                         }>
-                        <VStack spacing={{ base: 4, sm: 6 }}>
+                        <VStack
+                            spacing={{ base: 4, sm: 6 }}
+                            className='post-description-wrapper'>
                             <Text className='article' fontSize={'lg'} w={'100%'}>
                                 {NewTextComp}
                             </Text>
                         </VStack>
-                        <Link href={`/edit?id=${id}`}><Button >Edit Post</Button></Link>
+                        <Link href={`/edit?id=${id}`}>
+                            <Button >Edit Post</Button>
+                        </Link>
                     </Stack>
                 </Stack>
             </SimpleGrid>

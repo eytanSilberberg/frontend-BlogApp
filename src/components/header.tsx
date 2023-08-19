@@ -12,55 +12,19 @@ import {
     MenuItem,
     MenuDivider,
     useDisclosure,
-    useColorModeValue,
     Stack,
     Image,
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons'
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react'
-
-
-interface Props {
-    children: React.ReactNode
-}
+import NavLink from './navLink';
+import { headerButtons as buttons } from '@/services/util.service';
 
 // button data
-const buttons = [
-    {
-        name: 'Home',
-        path: '/'
-    },
-    {
-        name: 'Posts',
-        path: '/posts'
-    },
-    {
-        name: 'Edit',
-        path: '/edit'
-    }
-]
 
-const NavLink = (props: Props) => {
-    const { children } = props
 
-    return (
-        <Box
-            as="a"
-            px={2}
-            py={1}
-            rounded={'md'}
-            _hover={{
-                textDecoration: 'none',
-                bg: useColorModeValue('gray.200', 'gray.700'),
-            }}
-            href={'#'}>
-            {children}
-        </Box>
-    )
-}
-
-export default function Simple() {
+export default function Header() {
     const currentPath = usePathname()
 
     useEffect(() => {
@@ -91,7 +55,9 @@ export default function Simple() {
                             className='image-wrapper'
                             w={59}
                             flexGrow={1}>
-                            <Image width={'100%'} height={'100%'} src={'/logo2.svg'} />
+                            <Link href={'/'}>
+                                <Image width={'100%'} height={'100%'} src={'/logo2.svg'} alt='logo-image-svg' />
+                            </Link>
                         </Box>
                         <HStack className='nav-button' flexGrow={2} as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }} justifyContent={'center'}>
                             {buttons.map((button, index) => {

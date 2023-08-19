@@ -29,8 +29,7 @@ export default function HomeCmp({ postsSSR, homePageDataSSR }: { postsSSR: getPo
                 <Hero homePageData={homePageData} />
                 <Heading fontSize={['xl', '3xl']} my={10} >{'WHAT\'S NEW'}</Heading>
                 <Flex justifyContent={'center'} gap={5} flexWrap={'wrap'} mb={20}>
-                    {postsFromRedux.length > 0 && relevantPosts.map((post) => <PostCard key={post.id} post={post} />)}
-                    {postsFromRedux.length === 0 && postsSSR && relevantPosts.map((post) => <PostCard key={post.id} post={post} />)}
+                    {relevantPosts.map((post) => <PostCard key={post.id} post={post} />)}
                 </Flex>
             </Flex>
         </>
