@@ -15,6 +15,7 @@ export default function PostCard({ post }: { post: Post }) {
         <Link
             href={`/posts/${post.id}`}
             className='post-card'
+            aria-label={`Read more about ${post.title}`}
         >
             <Center >
                 <Box
