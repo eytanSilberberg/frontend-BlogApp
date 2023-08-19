@@ -63,7 +63,7 @@ export default function PostCard({ post }: { post: Post }) {
                             {post.title}
                         </Heading>
                         <Text color={'gray.500'} fontSize={'15px'}>
-                            {post.description.substring(0, 100)}...
+                            {post.description.length > 100 ? `${post.description.substring(0, 100)}...` : post.description}
                         </Text>
                     </Stack>
 
