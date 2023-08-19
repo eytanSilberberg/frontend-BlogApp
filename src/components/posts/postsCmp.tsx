@@ -28,7 +28,7 @@ export default function PostCmp() {
         <Flex minH={'100vh'} flexDir={'column'}>
             <Heading textAlign={'center'} mt={30}>All posts</Heading>
             <Flex flexWrap={'wrap'} justifyContent={'center'} gap={5} mt={10} mb={10}>
-                {postsFromRedux.length > 0 && postsFromRedux.map((post) => <PostCard key={post.id} post={post} />)}
+                {postsFromRedux.map((post) => <PostCard key={post.id} post={post} />)}
             </Flex>
         </Flex>
     )
