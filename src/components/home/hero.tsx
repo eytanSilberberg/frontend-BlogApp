@@ -24,6 +24,7 @@ export default function Hero({ homePageData }: { homePageData: HomepageData }) {
                 bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
                 <Stack maxW={'2xl'} align={'flex-start'} spacing={6}>
                     <Text
+                        as={'h1'}
                         color={'white'}
                         fontWeight={700}
                         textShadow={'0 0 20px rgba(0,0,0,0.6)'}
